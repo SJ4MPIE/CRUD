@@ -1,19 +1,14 @@
-<?php include "db_delete.php"; ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
+<?php include "functions.php"; ?>
+<?php delete_user(); ?>
+<?php include "header.php"; ?>
 
 <body>
     <div class="container-fluid">
         <div class="col-sm-3">
+            <h1 class="text-center">Delete user</h1>
             <div class="form-group">
-                <form action="db_delete.php" method="post">
+                <form action="form_delete.php" method="post">
                     <select name="id" id="">
                         <?php get_id(); ?>
                     </select>

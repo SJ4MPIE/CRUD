@@ -52,6 +52,7 @@ function db_create_user()
         $password = $_POST["password"];
 
         //prints out username and password 
+        echo "User created!". "</br>";
         echo "username: " . $username . "</br>";
         echo "password: " . $password;
 
@@ -66,9 +67,7 @@ function db_create_user()
         //Check if query was successful if not display error
         if (!$result) {
             die('Query Failed' . mysqli_error($result));
-        } ?>
-        <input type="button" value="Go back!" onclick="history.back()">
-<?php
+        }
     }
 }
 

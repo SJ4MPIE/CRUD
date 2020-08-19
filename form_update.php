@@ -1,19 +1,13 @@
 <?php include "functions.php"; ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
+<?php update_user(); ?>
+<?php include "header.php"; ?>
 
 <body>
     <div class="container-fluid">
         <div class="col-sm-3">
+            <h1 class="text-center">Update user</h1>
             <div class="form-group">
-                <form action="db_update.php" method="post">
+                <form action="form_update.php" method="post">
                     <label for="username">Username:</label>
                     <input class="form-control" type="text" name="username">
                     <label for="password">Password:</label>
