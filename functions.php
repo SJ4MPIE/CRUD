@@ -48,11 +48,17 @@ function db_create_user()
 {
     if (isset($_POST["submit"])) {
         global $connection;
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+        $username = mysqli_real_escape_string($connection, $_POST["username"]);
+        $password = mysqli_real_escape_string($connection, $_POST["password"]);
+        
+        //Makes sure password is encrypted.
+        $hash_format = "$2y$10$";
+        $salt = "iusesomecrazystrings22";
+        $hash_and_salt = $hash_format . $salt;
+        $password = crypt($password, $hash_and_salt); 
+
 
         //prints out username and password 
-        echo "User created!". "</br>";
         echo "username: " . $username . "</br>";
         echo "password: " . $password;
 
@@ -67,6 +73,8 @@ function db_create_user()
         //Check if query was successful if not display error
         if (!$result) {
             die('Query Failed' . mysqli_error($result));
+        } else {
+            echo "User created!". "</br>";
         }
     }
 }
@@ -75,8 +83,8 @@ function update_user()
 {
     if (isset($_POST["submit"])) {
         global $connection;
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+        $username = mysqli_real_escape_string($connection, $_POST["username"]);
+        $password = mysqli_real_escape_string($connection, $_POST["password"]);
         $id = $_POST["id"];
 
         $query_update = "UPDATE users SET ";
@@ -103,11 +111,22 @@ function delete_user(){
         
         if($result){
             echo "user deleted!";
-            ?> <input type="button" value="Go back!" onclick="history.back()"> <?php
         }
         else {
             echo "deleting user FAILED!";
-            ?> <input type="button" value="Go back!" onclick="history.back()"> <?php
         }
+    }
+}
+
+function truncate_table(){
+    global $connection;
+    $query_truncate = "TRUNCATE users";
+    $result = mysqli_query($connection, $query_truncate);
+
+    if($result){
+        echo "table has been truncated.";
+    }
+    else {
+        echo "error while truncating";
     }
 }

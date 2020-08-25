@@ -16,11 +16,6 @@
                 </form>
             </div>
         </div>
-        <div class="form-group">
-            <form>
-                <input type="button" value="Go back!" onclick="history.back()">
-            </form>
-        </div>
     </div>
 </body>
 
